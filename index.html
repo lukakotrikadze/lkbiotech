@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luka Kotrikadze — LKBiotech</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #ffffff;
+    --bg2: #f4f7fc;
+    --bg3: #e8eef7;
+    --border: rgba(30,80,160,0.1);
+    --border2: rgba(30,80,160,0.2);
+    --text: #0d1b2e;
+    --muted: #5a6e8a;
+    --accent: #1a5fd4;
+    --accent2: #0e3fa0;
+    --accent-dim: rgba(26,95,212,0.08);
+    --font-display: 'Syne', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+    --font-mono: 'DM Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-weight: 300;
+    line-height: 1.7;
+    font-size: 15px;
+  }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 4rem;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    text-decoration: none;
+  }
+
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+    font-family: var(--font-mono);
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  section { padding: 7rem 4rem; }
+
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 7rem 4rem 4rem;
+    position: relative;
+    overflow: hidden;
+    background: var(--bg);
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -150px; right: -150px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(26,95,212,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-tag {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .hero-tag::before {
+    content: '';
+    display: inline-block;
+    width: 24px; height: 1px;
+    background: var(--accent);
+  }
+
+  h1 {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 800;
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 0.25rem;
+  }
+
+  .name-accent { color: var(--accent); }
+
+  .hero-role {
+    font-family: var(--font-display);
+    font-size: clamp(1rem, 2vw, 1.35rem);
+    font-weight: 400;
+    color: var(--muted);
+    margin-top: 0.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .hero-summary {
+    max-width: 640px;
+    font-size: 16px;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 3rem;
+  }
+
+  .hero-cta { display: flex; gap: 1rem; align-items: center; }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.75rem;
+    background: var(--accent);
+    color: #ffffff;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    border-radius: 3px;
+    transition: all 0.2s;
+  }
+  .btn-primary:hover { background: var(--accent2); transform: translateY(-1px); }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.75rem;
+    border: 0.5px solid var(--border2);
+    color: var(--muted);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    border-radius: 3px;
+    transition: all 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+    margin-top: 5rem;
+    padding-top: 3rem;
+    border-top: 0.5px solid var(--border);
+  }
+
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent);
+    display: block;
+  }
+  .stat-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .about { background: var(--bg2); }
+
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 2rem;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+    margin-top: 3rem;
+  }
+
+  .about-text p {
+    color: var(--muted);
+    margin-bottom: 1.25rem;
+    font-size: 15px;
+    line-height: 1.85;
+  }
+
+  .modality-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+
+  .modality-tag {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 0.9rem;
+    background: var(--bg);
+    border: 0.5px solid var(--border2);
+    border-radius: 3px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--muted);
+    transition: all 0.2s;
+  }
+  .modality-tag:hover { border-color: var(--accent); color: var(--accent); }
+  .modality-tag::before {
+    content: '';
+    width: 5px; height: 5px;
+    background: var(--accent);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .experience { background: var(--bg); }
+
+  .timeline { margin-top: 3rem; }
+
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 3rem;
+    padding: 2.5rem 0;
+    border-top: 0.5px solid var(--border);
+  }
+  .timeline-item:last-child { border-bottom: 0.5px solid var(--border); }
+
+  .timeline-period {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    margin-bottom: 0.4rem;
+  }
+
+  .timeline-company {
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  .timeline-role {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+  }
+
+  .timeline-desc {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.75;
+    margin-bottom: 1rem;
+  }
+
+  .tag-list { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .tag {
+    padding: 0.25rem 0.65rem;
+    background: var(--accent-dim);
+    border: 0.5px solid rgba(26,95,212,0.2);
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    border-radius: 2px;
+    letter-spacing: 0.04em;
+  }
+
+  .services { background: var(--bg2); }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 0.5px solid var(--border2);
+    margin-top: 3rem;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .service-card {
+    background: var(--bg2);
+    padding: 2.25rem 2rem;
+    transition: background 0.2s;
+  }
+  .service-card:hover { background: var(--bg); }
+
+  .service-icon {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    margin-bottom: 1.25rem;
+    display: block;
+  }
+
+  .service-title {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+  }
+
+  .service-desc { font-size: 13.5px; color: var(--muted); line-height: 1.7; }
+
+  .contact { background: var(--bg); text-align: center; }
+  .contact h2 { margin-bottom: 1rem; }
+  .contact-sub {
+    color: var(--muted);
+    font-size: 16px;
+    margin-bottom: 3rem;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .contact-email {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1.1rem 2.5rem;
+    border: 0.5px solid var(--border2);
+    color: var(--text);
+    font-family: var(--font-mono);
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    border-radius: 3px;
+    transition: all 0.25s;
+    margin-bottom: 3rem;
+  }
+  .contact-email:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
+
+  .contact-links { display: flex; gap: 1.5rem; justify-content: center; }
+  .contact-link {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.06em;
+    padding-bottom: 1px;
+    border-bottom: 0.5px solid transparent;
+    transition: all 0.2s;
+  }
+  .contact-link:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+  footer {
+    padding: 1.5rem 4rem;
+    border-top: 0.5px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--bg2);
+  }
+  footer span {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">LK / BIOTECH</a>
+  <ul class="nav-links">
+    <li><a href="#about">about</a></li>
+    <li><a href="#experience">experience</a></li>
+    <li><a href="#services">services</a></li>
+    <li><a href="#contact">contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero" id="home">
+  <div class="hero-tag">AI/Biotech Consultant · Berlin</div>
+  <h1>Luka<br><span class="name-accent">Kotrikadze</span></h1>
+  <p class="hero-role">CMC & Regulatory Strategy · AI-Driven Drug Development</p>
+  <p class="hero-summary">
+    Biopharmaceutical leader with 8+ years across CMC development, regulatory affairs, and program leadership.
+    From mRNA COVID-19 vaccines at CureVac and BioNTech to cancer immunotherapies — bridging deep technical expertise with AI-driven strategy.
+  </p>
+  <div class="hero-cta">
+    <a href="#contact" class="btn-primary">Get in touch →</a>
+    <a href="#experience" class="btn-ghost">View experience</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <span class="stat-num">8+</span>
+      <span class="stat-label">Years in biopharma</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">4</span>
+      <span class="stat-label">High-profile programs</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">6+</span>
+      <span class="stat-label">Therapeutic modalities</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">2</span>
+      <span class="stat-label">Years freelance consulting</span>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="section-label">// about</div>
+  <h2>Where biology meets<br>data-driven strategy</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I operate at the intersection of biopharma R&D and AI-augmented strategy — helping companies navigate CMC development, regulatory affairs, and program leadership with precision and speed.</p>
+      <p>My background spans some of the most ambitious drug development programs of the last decade, including four mRNA programs at CureVac and BioNTech under extraordinarily compressed timelines, and CRISPR-based gene therapy development across cross-functional matrix organizations.</p>
+      <p>Today, I work as an independent consultant — delivering interim leadership, CMC strategy, regulatory planning, and AI integration workshops for research and commercial organizations.</p>
+    </div>
+    <div>
+      <div class="section-label" style="margin-bottom: 1rem;">Therapeutic modalities</div>
+      <div class="modality-grid">
+        <div class="modality-tag">mRNA therapeutics</div>
+        <div class="modality-tag">Small molecules</div>
+        <div class="modality-tag">Monoclonal antibodies</div>
+        <div class="modality-tag">ATMPs</div>
+        <div class="modality-tag">CRISPR / gene therapy</div>
+        <div class="modality-tag">Orphan drugs</div>
+        <div class="modality-tag">Cancer immunotherapy</div>
+        <div class="modality-tag">Vaccines</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="experience" id="experience">
+  <div class="section-label">// experience</div>
+  <h2>Career highlights</h2>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-meta">
+        <div class="timeline-period">04.2024 — Present</div>
+        <div class="timeline-company">Independent</div>
+      </div>
+      <div>
+        <div class="timeline-role">Freelance Consultant</div>
+        <p class="timeline-desc">Interim Head of Project Management at a pharmaceutical organization (reporting directly to CEO), CMC strategy and regulatory consulting across biopharmaceutical programs, and delivering workshops on translating innovative therapeutics from lab to market.</p>
+        <div class="tag-list">
+          <span class="tag">CMC strategy</span>
+          <span class="tag">Regulatory affairs</span>
+          <span class="tag">Interim leadership</span>
+          <span class="tag">Training & workshops</span>
+          <span class="tag">AI integration</span>
+        </div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-meta">
+        <div class="timeline-period">11.2020 — 04.2024</div>
+        <div class="timeline-company">BioNTech SE / CureVac AG</div>
+      </div>
+      <div>
+        <div class="timeline-role">CMC Project Manager</div>
+        <p class="timeline-desc">End-to-end CMC Project Manager across four high-profile mRNA programs — COVID-19 vaccine, COVID-19/influenza combination (GSK partnership), glioblastoma vaccine, and individualized neoantigen cancer immunotherapy (iNeST). Full ownership across DS/DP process development, analytical methods, formulation, stability, and GMP manufacturing readiness under exceptionally compressed timelines.</p>
+        <div class="tag-list">
+          <span class="tag">mRNA programs</span>
+          <span class="tag">DS/DP development</span>
+          <span class="tag">GMP readiness</span>
+          <span class="tag">Cross-functional leadership</span>
+          <span class="tag">COVID-19 vaccine</span>
+          <span class="tag">Oncology</span>
+        </div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-meta">
+        <div class="timeline-period">Prior experience</div>
+        <div class="timeline-company">Biopharma industry</div>
+      </div>
+      <div>
+        <div class="timeline-role">CMC & Regulatory Affairs Consultant</div>
+        <p class="timeline-desc">Broad CMC development and regulatory consulting across diverse modalities including small molecules, monoclonal antibodies, ATMPs, orphan drugs, and gene therapies. Guided drug products from pre-clinical through commercial stage across multiple organizations.</p>
+        <div class="tag-list">
+          <span class="tag">Small molecules</span>
+          <span class="tag">mAbs</span>
+          <span class="tag">ATMPs</span>
+          <span class="tag">Orphan drugs</span>
+          <span class="tag">Preclinical–commercial</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="section-label">// services</div>
+  <h2>How I can help</h2>
+  <div class="services-grid">
+    <div class="service-card">
+      <span class="service-icon">01 / CMC</span>
+      <div class="service-title">CMC Strategy & Development</div>
+      <p class="service-desc">End-to-end CMC program leadership across DS/DP development, analytical methods, formulation, stability, and GMP manufacturing readiness.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">02 / REG</span>
+      <div class="service-title">Regulatory Affairs Consulting</div>
+      <p class="service-desc">Regulatory strategy and dossier support for IND/CTA filings, CMC sections, and interactions with EMA, FDA, and other health authorities.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">03 / PM</span>
+      <div class="service-title">Program & Portfolio Management</div>
+      <p class="service-desc">Interim leadership and PMO setup for complex, cross-functional drug development programs. Tight timelines, large matrix organizations.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">04 / AI</span>
+      <div class="service-title">AI Integration in Life Sciences</div>
+      <p class="service-desc">Strategic advisory on deploying AI tools within R&D workflows — from data pipeline design to regulatory-compliant implementation.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">05 / EDU</span>
+      <div class="service-title">Training & Workshops</div>
+      <p class="service-desc">Bespoke workshops for research scientists and development teams on commercializing biopharmaceuticals and integrating AI into technical workflows.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">06 / ADV</span>
+      <div class="service-title">Scientific Advisory</div>
+      <p class="service-desc">Technical and strategic advisory for biotech startups and investors — due diligence support, program assessments, and development roadmapping.</p>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="section-label" style="justify-content: center; display: flex;">// contact</div>
+  <h2 style="margin-top: 0.75rem;">Let's work together</h2>
+  <p class="contact-sub">Available for consulting engagements, advisory roles, and speaking opportunities.</p>
+  <div>
+    <a href="mailto:luka.kotrikadze@lkbiotech.com" class="contact-email">luka.kotrikadze@lkbiotech.com</a>
+  </div>
+  <div class="contact-links">
+    <a href="https://linkedin.com" class="contact-link">LinkedIn</a>
+    <a href="#" class="contact-link">Download CV</a>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Luka Kotrikadze</span>
+  <span>lkbiotech.com</span>
+</footer>
+
+</body>
+</html>
